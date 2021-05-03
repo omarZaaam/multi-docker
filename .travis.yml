@@ -1,0 +1,37 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t omarzaam/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true omarzaam/react-test npm run test
+
+after_success:
+  - docker build -t omarzaam/multi-docker-client ./client
+  - docker build -t omarzaam/multi-docker-nginx ./nginx
+  - docker build -t omarzaam/multi-docker-server ./server
+  - docker build -t omarzaam/multi-docker-worker ./worker
+  - echo $DOCKER_PASSWORD | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push omarzam/omarzaam/multi-docker-nginx
+  - docker push omarzam/omarzaam/multi-docker-server
+  - docker push omarzam/omarzaam/multi-docker-worker
+  - docker push omarzam/omarzaam/multi-docker-client
+# Log in to docker CLI
+
+
+#deploy:
+#  provider: elasticbeanstalk
+  #region: "ca-central-1"
+  #app: "docker-react"
+  #env: "Dockerreact-env"
+#  bucket_name: "elasticbeanstalk-ca-central-1-742518153702"
+ # bucket_path: "docker-react"
+  #on:
+   # branch: master
+
+
+  #access_key_id: $AWS_ACCESS_KEY
+  #secret_access_key: $AWS_SECRET_KEY
