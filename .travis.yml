@@ -15,10 +15,10 @@ after_success:
   - docker build -t omarzaam/multi-docker-server ./server
   - docker build -t omarzaam/multi-docker-worker ./worker
   - echo $DOCKER_PASSWORD | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push omarzam/omarzaam/multi-docker-nginx
-  - docker push omarzam/omarzaam/multi-docker-server
-  - docker push omarzam/omarzaam/multi-docker-worker
-  - docker push omarzam/omarzaam/multi-docker-client
+  - docker push omarzaam/multi-docker-nginx
+  - docker push omarzaam/multi-docker-server
+  - docker push omarzaam/multi-docker-worker
+  - docker push omarzaam/multi-docker-client
   
 # Log in to docker CLI
 
