@@ -13,7 +13,7 @@ function App() {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+           Welcome to my Fibonachi calculator!!
           </p>
           <a
             className="App-link"
