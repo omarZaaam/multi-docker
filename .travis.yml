@@ -4,13 +4,13 @@ services:
   - docker
 
 before_install:
-  - docker build -t react-testing -f ./client/Dockerfile.dev ./client
+  - docker build -t reacttesting -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true react-testing npm run test
+  - docker run -e CI=true reacttesting npm run test
 
 after_success:
-  - docker build -t omarzaam/multi-docker-client ./client
+  - docker build -t omarzaam/multi-docker-client-test ./client
   - docker build -t omarzaam/multi-docker-nginx ./nginx
   - docker build -t omarzaam/multi-docker-server ./server
   - docker build -t omarzaam/multi-docker-worker ./worker
