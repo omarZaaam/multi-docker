@@ -10,7 +10,7 @@ script:
   - docker run -e CI=true reacttesting npm run test
 
 after_success:
-  - docker build -t omarzaamtest/multi-docker-client-test ./client
+  - docker build -t omarzaamtest/multi-docker-client ./client
   - docker build -t omarzaamtest/multi-docker-nginx ./nginx
   - docker build -t omarzaamtest/multi-docker-server ./server
   - docker build -t omarzaamtest/multi-docker-worker ./worker
